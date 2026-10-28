@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+IDENTITY=/etc/brainbox-zero-image
+
+if [[ ! -f "$IDENTITY" ]]; then
+    echo "ERROR: $IDENTITY is missing; this is not a recognised Brainbox Zero image" >&2
+    exit 1
+fi
+
+echo "Brainbox Zero image identity:"
+cat "$IDENTITY"
+
+echo
+echo "System:"
+uname -a
+echo "Architecture: $(uname -m)"
+
+if [[ -f /etc/os-release ]]; then
+    . /etc/os-release
+    echo "OS: ${PRETTY_NAME:-unknown}"
+fi
+
+if [[ -e /dev/serial0 ]]; then
+    echo "serial0: $(readlink -f /dev/serial0)"
+else
+    echo "WARNING: /dev/serial0 is not present"
+fi
+
+echo
+echo "Brainbox Zero image self-check complete."

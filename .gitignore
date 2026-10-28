@@ -1,0 +1,10 @@
+# Device-specific first-boot configuration contains credentials.
+local/
+
+# Image build/download output.
+.work/
+out/
+
+# OS/editor noise.
+.DS_Store
+Thumbs.db
