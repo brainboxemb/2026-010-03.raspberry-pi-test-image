@@ -13,7 +13,11 @@ GitHub Actions:
 5. applies the versioned overlays from this repository;
 6. writes image identity information into the root filesystem;
 7. recompresses the resulting image;
-8. publishes the image and SHA-256 as a GitHub Actions artifact.
+8. publishes the image and SHA-256 as a GitHub Actions artifact;
+9. for `image-v*` tags only, publishes those verified files as a GitHub Release.
+
+**Image updates from a running Pi are not supported yet**: whole-disk flashing must
+be performed from another computer. See [SD layout and image update design](docs/30-sd-layout-and-image-updates.md).
 
 The built image contains **no device-specific credentials**.
 
