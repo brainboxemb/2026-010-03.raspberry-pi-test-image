@@ -2,14 +2,15 @@ name: Build Brainbox Zero image
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - "**"
+  pull_request:
     paths:
       - "config/image.env"
       - "overlay/**"
       - "scripts/build-image.sh"
       - ".github/workflows/build-image.yml"
+  push:
+    tags:
+      - "image-v*"
 
 permissions:
   contents: read
