@@ -5,6 +5,12 @@ This is the main entry point for installing the Brainbox Zero image.
 The development workstation is **Windows**. GitHub Actions builds the image; on Windows you only
 download the built artifact, write it to the microSD card and add local device configuration.
 
+For the partition layout, what the `.img.xz` actually contains, and the design for
+future updates directly from the Pi prompt, see
+[30 — SD layout and image updates](30-sd-layout-and-image-updates.md).
+The present installation is still a fresh flash; on-device full-image replacement
+is **not implemented**.
+
 ## Overview
 
 ```text
