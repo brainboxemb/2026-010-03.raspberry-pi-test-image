@@ -58,4 +58,7 @@ This repository does **not** own:
 
 ## Start here
 
-Go to **[docs/SETUP.md](docs/SETUP.md)**.
+Go to **[docs/SETUP.md](docs/SETUP.md)** for the first installation.
+
+See **[docs/ROADMAP.md](docs/ROADMAP.md)** for the phased plan: first a basic
+Raspberry Pi OS image; later optional USB-disk and GitHub-sourced updates.
