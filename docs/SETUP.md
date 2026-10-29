@@ -54,6 +54,10 @@ in Imager when following these instructions.
 
 ## 1. Build the image on GitHub
 
+For development, use the GitHub Actions artifact described below. For a tagged
+`image-v*` build, the workflow also publishes the image and SHA-256 checksum as
+a longer-lived GitHub Release; neither option provides on-device installation yet.
+
 Open the repository on GitHub.
 
 Go to:
