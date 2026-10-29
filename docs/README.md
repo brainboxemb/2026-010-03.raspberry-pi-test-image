@@ -13,6 +13,11 @@ It describes, step by step:
 5. performing the first boot;
 6. checking the serial console and SSH.
 
+## Roadmap
+
+- [Brainbox Zero roadmap](ROADMAP.md) — basic image first, with USB-disk and
+  GitHub-sourced updates as possible later stages.
+
 ## Reference
 
 - [10 — Image baseline](10-target-baseline.md) — which base image is used;
