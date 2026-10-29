@@ -1,0 +1,6 @@
+# Brainbox Zero platform image settings.
+# Device-specific credentials are deliberately not stored here.
+
+enable_uart=1
+dtparam=i2c_arm=on
+dtparam=spi=on

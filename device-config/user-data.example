@@ -1,0 +1,21 @@
+#cloud-config
+#
+# Copy this file to local/user-data, edit it locally, then copy it to the
+# boot partition after flashing. Never commit local/user-data.
+
+hostname: brainbox-zero-01
+manage_etc_hosts: true
+timezone: Europe/Amsterdam
+
+users:
+  - name: piuser
+    groups: users,adm,dialout,audio,netdev,video,plugdev,cdrom,games,input,gpio,spi,i2c,render,sudo
+    shell: /bin/bash
+    lock_passwd: false
+    plain_text_passwd: CHANGE-ME
+    ssh_authorized_keys:
+      - ssh-ed25519 CHANGE-ME
+    sudo: ALL=(ALL) NOPASSWD:ALL
+
+enable_ssh: true
+ssh_pwauth: false
