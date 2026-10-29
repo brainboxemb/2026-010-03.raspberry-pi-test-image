@@ -4,7 +4,9 @@ This page explains the **standard Raspberry Pi OS Lite image** used by Brainbox 
 today, and the design needed for future updates from the running Raspberry Pi prompt.
 
 **Status (2026-10-29):** the two-partition image and Windows flashing procedure are
-implemented. **On-device replacement of the entire OS image is not implemented.**
+implemented. The image workflow also has tagged GitHub Release publishing,
+but no production release is implied. **On-device replacement of the entire OS image
+is not implemented.**
 The A/B design below is a proposal, not an installation procedure.
 
 ## 1. What an image file actually is
@@ -193,8 +195,9 @@ A complete failure-safe updater additionally needs:
 
 1. **Baseline (current):** keep the present Raspberry Pi OS Lite image and
    two-partition SD installation, and document the actual layout.
-2. **Distribution:** publish versioned image files, checksums and metadata to
-   stable GitHub Releases (Actions artifacts expire).
+2. **Distribution (workflow present, release not yet cut):** tagged `image-v*`
+   builds publish a factory image and checksum in GitHub Releases (Actions
+   artifacts expire); version/compatibility manifest still needs defining.
 3. **A/B prototype:** validate boot slot selection and a rollback on a
    Raspberry Pi Zero W; choose a viable partition table and persistent DATA.
 4. **Builder:** generate a factory SD image *and* a smaller slot-update
