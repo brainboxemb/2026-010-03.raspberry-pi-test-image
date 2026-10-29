@@ -29,6 +29,23 @@ Raspberry Pi first boot
 
 Credentials are **not** stored in GitHub and **not** embedded in the built image.
 
+## Before you start
+
+You need:
+
+- a Raspberry Pi Zero / Zero W and a stable power supply;
+- a microSD card (at least 8 GB; 16 GB or more is convenient) and a Windows card reader;
+- [Raspberry Pi Imager](https://www.raspberrypi.com/software/) installed on Windows;
+- a local copy of this repository for the configuration examples and PowerShell script.
+
+**You do not need to format the microSD card, create partitions, or copy Linux files manually.**
+Raspberry Pi Imager writes the complete partition layout and filesystems from the image.
+Writing an image **erases the entire microSD card**, so check the target drive carefully.
+
+**Image choice:** the current GitHub build uses Raspberry Pi OS Lite (32-bit), not Alpine Linux.
+Alpine is being evaluated separately; do not select Alpine or the stock Raspberry Pi OS image
+in Imager when following these instructions.
+
 ## 1. Build the image on GitHub
 
 Open the repository on GitHub.
@@ -67,19 +84,27 @@ Get-FileHash -Algorithm SHA256 .\<image>.img.xz
 
 Compare the result with the matching `.sha256` file from the same build.
 
-## 3. Write the image to microSD
+## 3. Prepare and write the microSD card (Windows)
 
-Use Raspberry Pi Imager only as the **image writer**:
+1. Insert the microSD card into the Windows card reader. **Anything on this card will be erased.**
+2. Open **Raspberry Pi Imager**.
+3. Choose the OS: **Use custom** (sometimes under **Choose OS → Use custom**).
+4. Select `brainbox-zero.img.xz` extracted from the GitHub Actions artifact. Do not pick a
+   ready-made OS from the Imager list.
+5. Choose the microSD card as the **storage** target. Double-check its size and drive before writing.
+6. Start the write operation and allow Imager to verify the result.
+7. If Imager offers OS customisation (hostname, username, Wi-Fi, SSH), **skip it**. We supply
+   device-specific settings separately in steps 4 and 5 below.
+8. When writing finishes, leave or reinsert the card in the reader so Windows can show its FAT
+   boot partition. It may have a label such as `bootfs` and a drive letter such as `E:`.
 
-1. insert the microSD card;
-2. open Raspberry Pi Imager;
-3. choose `Use custom`;
-4. select the GitHub-built `.img.xz`;
-5. select the correct microSD card;
-6. write and verify the card.
+**Important Windows detail:** Windows cannot normally read the Linux root partition. If Windows
+asks to format an unrecognised partition after flashing, select **Cancel**. Never format it.
 
-Do **not** use Raspberry Pi Imager customisation for users, Wi-Fi or SSH. Device-specific
-configuration is added explicitly in the next step.
+You should find files such as `config.txt`, `cmdline.txt` and
+`brainbox-zero-config.txt` in the readable boot partition. The actual Linux installation lives
+on the other partition, which does **not** need to be visible in Windows.
+No extra formatting or manual partitioning is needed.
 
 ## 4. Prepare local device configuration
 
@@ -125,7 +150,8 @@ after preparation, on the SD card.
 
 ## 5. Copy device configuration to the SD card
 
-After flashing, the FAT boot partition is visible in Windows.
+After flashing, identify the drive letter of the FAT **boot partition** in Windows Explorer.
+Verify it contains `config.txt` before running the script; do not pass the Windows system drive.
 
 For example, if Windows mounts it as `E:\`, run:
 
@@ -139,6 +165,10 @@ The script copies:
 local/user-data       -> E:\user-data
 local/network-config  -> E:\network-config
 ```
+
+Check in Windows Explorer that both new files are present in the **root of the boot partition**,
+next to `config.txt` (not in a subfolder). Safely eject the microSD card before inserting it
+into the Pi.
 
 The official Raspberry Pi OS Trixie image already contains the cloud-init support and `meta-data`
 needed to process these files.
