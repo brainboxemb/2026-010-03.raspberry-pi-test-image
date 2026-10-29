@@ -9,7 +9,8 @@ For the partition layout, what the `.img.xz` actually contains, and the design f
 future updates directly from the Pi prompt, see
 [30 — SD layout and image updates](30-sd-layout-and-image-updates.md).
 The present installation is still a fresh flash; on-device full-image replacement
-is **not implemented**.
+is **not implemented**. For the step-by-step priorities and possible future USB
+and GitHub update paths, see the [roadmap](ROADMAP.md).
 
 ## Overview
 
