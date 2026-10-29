@@ -49,6 +49,8 @@ This repository does **not** own:
 - `scripts/Prepare-SdCard.ps1` — copies local device configuration to a flashed SD card;
 - `.github/workflows/build-image.yml` — builds and publishes the image artifact;
 - `docs/SETUP.md` — practical Windows-first setup guide.
+- `docs/30-sd-layout-and-image-updates.md` — current SD-card partitions and proposed
+  safe on-device image replacement (A/B slots; not yet implemented);
 
 ## Start here
 
