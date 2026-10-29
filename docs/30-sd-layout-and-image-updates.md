@@ -191,7 +191,16 @@ A complete failure-safe updater additionally needs:
 - explicit compatibility rules for boot firmware and kernel changes;
 - real on-device tests of success, rollback and interrupted updates.
 
-## 6. Proposed implementation order
+## 6. Roadmap and next steps
+
+The current priority is the basic Raspberry Pi OS image. Future options —
+including offline updates from a USB disk and downloads from GitHub — are
+tracked in [ROADMAP.md](ROADMAP.md). USB and GitHub are **sources** for an
+update; neither removes the need for a safe mechanism to replace an OS on a
+running Pi. This section outlines technical dependencies, not the immediate
+scope.
+
+### Longer-term technical work
 
 1. **Baseline (current):** keep the present Raspberry Pi OS Lite image and
    two-partition SD installation, and document the actual layout.
