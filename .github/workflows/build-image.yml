@@ -15,6 +15,11 @@ on:
 permissions:
   contents: read
 
+# A new commit to a PR supersedes prior image builds on that same PR.
+concurrency:
+  group: brainbox-zero-image-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
